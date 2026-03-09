@@ -1,6 +1,6 @@
 [project]
-name = "algo-viz"
-version = "0.1.0"
+name = "algoviz-python"
+version = "0.1.1"
 description = "Visualize algorithm execution to build intuition"
 readme = "README.md"
 license = {text = "MIT"}
@@ -41,9 +41,14 @@ Documentation = "https://github.com/kamaledge/algo-viz#readme"
 Repository = "https://github.com/kamaledge/algo-viz.git"
 Issues = "https://github.com/kamaledge/algo-viz/issues"
 
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["algo_viz*"]
+
 [project.scripts]
 algoviz = "algo_viz.cli:main"
 
-[build-system]
-requires = ["setuptools>=45", "wheel"]
-build-backend = "setuptools.build_meta"

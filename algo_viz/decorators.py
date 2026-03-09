@@ -30,13 +30,14 @@ from .renderers.generic import (
 )
 
 
-def visualize(mode="ascii", show_generic=True):
+def visualize(mode="ascii", show_generic=True, verbose=False):
     """
     Visualize algorithm execution with support for both specialized patterns and generic analysis.
     
     Args:
         mode: "ascii" (default), "html", or "json"
         show_generic: If True, show generic behavior analysis in addition to specialized patterns
+        verbose: If True, show detailed variable tracking and data flow; if False, show concise output (default)
     """
     def wrapper(func):
         def inner(*args, **kwargs):
@@ -87,21 +88,21 @@ def visualize(mode="ascii", show_generic=True):
                 if mode == "ascii":
                     # Render in logical order: Summary -> Stats -> Patterns -> Operations -> Variables -> Data Flow
                     render_behavior_summary(events)
-                    render_execution_stats(events)
+                    if verbose:
+                        render_execution_stats(events)
                     
                     # Show detected patterns
-                    if generic_patterns:
+                    if verbose and generic_patterns:
                         render_pattern_summary(generic_patterns)
                     
                     # Show operations performed
-                    if any(operations.values()):
+                    if verbose and any(operations.values()):
                         render_operation_summary(operations)
                     
-                    # Show variable tracking
-                    render_variable_tracking(events)
-                    
-                    # Show data flow
-                    render_data_flow(events)
+                    # Show variable tracking and data flow if verbose
+                    if verbose:
+                        render_variable_tracking(events)
+                        render_data_flow(events)
 
             if mode == "ascii":
                 # Render specialized visualizations for each pattern

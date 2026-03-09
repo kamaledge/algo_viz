@@ -1,3 +1,5 @@
+from algo_viz import visualize
+
 @visualize()
 def max_depth(node):
     if not node:

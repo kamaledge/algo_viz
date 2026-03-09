@@ -262,7 +262,7 @@ def render_data_flow(events) -> None:
             print(f"     • Transforms to: {len(destinations)} different value(s)")
 
 
-
+'''
 def render_pattern_summary(patterns: Dict[str, Any]) -> None:
     """Render detected patterns in a readable format."""
     if not patterns:
@@ -370,3 +370,4 @@ def render_execution_stats(events) -> None:
     print(f"Unique variables: {len(stats['unique_vars'])}")
     print(f"Function calls: {stats['calls']}")
     print(f"Returns: {stats['returns']}")
+'''
